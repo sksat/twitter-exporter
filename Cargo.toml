@@ -9,7 +9,7 @@ edition = "2018"
 [dependencies]
 egg-mode = "0.15.0"
 env_logger = "0.8.2"
-hyper = "0.13"
+hyper = "0.14"
 job_scheduler = "1.2.1"
 lazy_static = "1.4.0"
 log = "0.4.14"
