@@ -48,14 +48,24 @@ async fn main() {
                 let show = egg_mode::user::show(user, &token).await.unwrap();
                 let user = show.response;
 
+                let tweet = user.statuses_count;
+                let fav = user.favourites_count;
                 let following = user.friends_count;
                 let followers = user.followers_count;
-                let fav = user.favourites_count;
+                let listed = user.listed_count;
 
+                info!("tweet: {}", tweet);
+                info!("fav: {}", fav);
                 info!("following: {}", following);
                 info!("followers: {}", followers);
-                info!("fav: {}", fav);
+                info!("listed: {}", listed);
 
+                USER_GAUGE_VEC
+                    .with_label_values(&[&screen_name, "tweet"])
+                    .set(tweet as i64);
+                USER_GAUGE_VEC
+                    .with_label_values(&[&screen_name, "fav"])
+                    .set(fav as i64);
                 USER_GAUGE_VEC
                     .with_label_values(&[&screen_name, "following"])
                     .set(following as i64);
@@ -63,8 +73,8 @@ async fn main() {
                     .with_label_values(&[&screen_name, "followers"])
                     .set(followers as i64);
                 USER_GAUGE_VEC
-                    .with_label_values(&[&screen_name, "fav"])
-                    .set(fav as i64);
+                    .with_label_values(&[&screen_name, "listed"])
+                    .set(listed as i64);
             });
         }));
         loop {
