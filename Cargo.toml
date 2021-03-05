@@ -13,7 +13,7 @@ hyper = "0.13"
 job_scheduler = "1.2.1"
 lazy_static = "1.4.0"
 log = "0.4.14"
-prometheus = "0.11.0"
+prometheus = "0.12.0"
 serde = "1.0.123"
 serde_derive = "1.0.123"
 tokio = { version="0.2.8", features=["full"] }
